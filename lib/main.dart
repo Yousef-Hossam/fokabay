@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
         ],
       ),
-      title: 'Flutter Demo',
+      title: 'Fouka bay',
       theme: ThemeData(
         // This is the theme of your application.
         //
