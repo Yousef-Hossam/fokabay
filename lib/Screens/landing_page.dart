@@ -15,7 +15,7 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.black12,
+      //   backgroundColor: Colors.black12,
       body: Stack(
         children: [
           Image.asset(
