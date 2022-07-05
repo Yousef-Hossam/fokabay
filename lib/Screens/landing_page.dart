@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/fracation_sized_box.dart';
-
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
 
@@ -19,27 +17,13 @@ class _LandingPageState extends State<LandingPage> {
       body: Stack(
         children: [
           Image.asset(
-            screenWidth > 500
-                ? 'images/desktop_landing.png'
-                : 'images/landing_mobile_bk.png',
+            screenWidth > 600
+                ? 'images/landing_screen.png'
+                : 'images/mobile_landing.png',
             width: double.infinity,
             height: double.infinity,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
-          screenWidth < 500
-              ? FractionallyAlignedSizedBox(
-                  topFactor: .35,
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 1, left: 1),
-                    child: Image.asset(
-                      'images/coming_soon.png',
-                      width: screenWidth,
-                      //  height:,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                )
-              : SizedBox()
           // FractionallyAlignedSizedBox(
           //   bottomFactor: .1,
           //   child: Padding(
