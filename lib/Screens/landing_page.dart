@@ -18,8 +18,8 @@ class _LandingPageState extends State<LandingPage> {
         children: [
           Image.asset(
             screenWidth > 600
-                ? 'images/landing_screen.png'
-                : 'images/mobile_landing.png',
+                ? 'images/desktop_landing_bk.png'
+                : 'images/mobile_landing_bk.png',
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,

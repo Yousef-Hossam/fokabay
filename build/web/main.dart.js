@@ -43603,10 +43603,10 @@ A.LN.prototype={}
 A.oa.prototype={
 aF(){return new A.AO(B.o)}}
 A.AO.prototype={
-P(a,b){var s=null,r=b.a0(t.w).f.a.a>600?"images/landing_screen.png":"images/mobile_landing.png"
+P(a,b){var s=null,r=b.a0(t.w).f.a.a>600?"images/desktop_landing_bk.png":"images/mobile_landing_bk.png"
 return new A.pv(A.pQ(B.c1,A.a([new A.nR(A.a6t(s,s,new A.mS(r,s,s)),1/0,1/0,B.ra,s)],t.E),B.bR),s)}}
 A.w9.prototype={
-P(a,b){return new A.oo(B.uS,new A.KU(),"Flutter Demo",A.a_F(null,B.oF),!1,null)}}
+P(a,b){return new A.oo(B.uS,new A.KU(),"Fouka bay",A.a_F(null,B.oF),!1,null)}}
 A.KU.prototype={
 $2(a,b){var s=null
 b.toString
