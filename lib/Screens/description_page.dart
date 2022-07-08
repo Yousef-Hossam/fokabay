@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fokabay/Models/events_model.dart';
 import 'package:fokabay/Screens/register_page.dart';
+import 'package:intl/intl.dart';
 
 class DescriptionPage extends StatefulWidget {
   static const String route = '/description';
@@ -16,12 +17,13 @@ class DescriptionPage extends StatefulWidget {
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
-  // late WorkShopProvider workShopProvider;
+  //  late WorkShopProvider workShopProvider;
   late Events events;
+  DateFormat dateFormat = new DateFormat('dd-MM-yyyy hh:mm a');
 
   @override
   Widget build(BuildContext context) {
-    //   workShopProvider = Provider.of<WorkShopProvider>(context, listen: true);
+    //  workShopProvider = Provider.of<WorkShopProvider>(context, listen: true);
     events = ModalRoute.of(context)!.settings.arguments as Events;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -41,37 +43,45 @@ class _DescriptionPageState extends State<DescriptionPage> {
 
         //  title: Text('fffff'),
       ),
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                  w > 800
-                      ? 'images/desktop_register.png'
-                      : 'images/mobile_register.png',
-                ),
-                fit: BoxFit.cover),
-          ),
-          child: Column(
-            children: [
+      body: SingleChildScrollView(
+        // child: Container(
+        //   width: double.infinity,
+        //   height: double.infinity,
+        //   decoration: BoxDecoration(
+        //     image: DecorationImage(
+        //         image: AssetImage(
+        //           w > 800
+        //               ? 'images/desktop_register.png'
+        //               : 'images/mobile_register.png',
+        //         ),
+        //         fit: BoxFit.cover),
+        //   ),
+        //   child: Column(
+        child: Stack(
+          children: [
+            Image.asset(
               w > 800
-                  ? Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.of(context).size.width * 0.2,
-                          vertical: 8.0),
-                      child: Container(
-                          //   height: MediaQuery.of(context).size.height * 0.85,
-                          child: cardworkShop(events)),
-                    )
-                  : Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-                      child: Container(child: cardWorkShopMobile(events)),
-                    )
-            ],
-          ),
+                  ? 'images/desktop_register.png'
+                  : 'images/mobile_register.png',
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.fill,
+            ),
+            w > 800
+                ? Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.2,
+                        vertical: 8.0),
+                    child: Container(
+                        //   height: MediaQuery.of(context).size.height * 0.85,
+                        child: cardworkShop(events)),
+                  )
+                : Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                    child: Container(child: cardWorkShopMobile(events)),
+                  )
+          ],
         ),
       ),
     );
@@ -134,7 +144,15 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       SizedBox(
                         height: 5,
                       ),
-                      Text(workShopModel.datetime.toString(),
+                      Text(
+                          DateFormat("dd").format(dateFormat
+                                  .parse(workShopModel.datetime.toString())) +
+                              ' ' +
+                              DateFormat("MMMM").format(dateFormat
+                                  .parse(workShopModel.datetime.toString())) +
+                              ' ' +
+                              DateFormat("yyyy").format(dateFormat
+                                  .parse(workShopModel.datetime.toString())),
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.black,
@@ -150,7 +168,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     SizedBox(
                       height: 5,
                     ),
-                    Text(workShopModel.datetime.toString(),
+                    Text(
+                        DateFormat.jm().format(dateFormat
+                            .parse(workShopModel.datetime.toString())),
                         style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
@@ -165,7 +185,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     SizedBox(
                       height: 5,
                     ),
-                    Text(workShopModel.durationHours.toString(),
+                    Text(workShopModel.durationHours.toString() + ' Hours',
                         style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
@@ -222,9 +242,27 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500)),
                           onPressed: () {
-                            Navigator.of(context).pushNamed(
-                              RegisterPage.route,
-                            );
+                            if (workShopModel.noOfSeats! > 0) {
+                              Navigator.of(context).pushNamed(
+                                RegisterPage.route,
+                              );
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (_) => new AlertDialog(
+                                        title: new Text(""),
+                                        content: new Text(
+                                            "Sorry no available seats"),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                            child: Text('OK!'),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          )
+                                        ],
+                                      ));
+                            }
                           })),
                 ),
               )
@@ -298,7 +336,16 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                   fontSize: 18,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400)),
-                          Text(workShopModel.datetime.toString(),
+                          SizedBox(height: 4),
+                          Text(
+                              DateFormat("dd").format(dateFormat.parse(
+                                      workShopModel.datetime.toString())) +
+                                  ' ' +
+                                  DateFormat("MMMM").format(dateFormat.parse(
+                                      workShopModel.datetime.toString())) +
+                                  ' ' +
+                                  DateFormat("yyyy").format(dateFormat.parse(
+                                      workShopModel.datetime.toString())),
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -312,7 +359,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                   fontSize: 18,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400)),
-                          Text(workShopModel.datetime.toString(),
+                          SizedBox(height: 4),
+                          Text(
+                              DateFormat.jm().format(dateFormat
+                                  .parse(workShopModel.datetime.toString())),
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -335,7 +385,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                   fontSize: 18,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400)),
-                          Text(workShopModel.durationHours.toString() + 'Hours',
+                          SizedBox(height: 4),
+                          Text(
+                              workShopModel.durationHours.toString() +
+                                  '  Hours',
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -349,6 +402,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                   fontSize: 18,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400)),
+                          SizedBox(height: 4),
                           Text(workShopModel.minAge.toString(),
                               style: TextStyle(
                                   fontSize: 16,

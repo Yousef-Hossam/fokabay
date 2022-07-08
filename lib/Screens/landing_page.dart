@@ -21,7 +21,7 @@ class _LandingPageState extends State<LandingPage> {
       body: Stack(
         children: [
           Image.asset(
-            screenWidth > 600
+            screenWidth > 700
                 ? 'images/landing_desktop_bk.png'
                 : 'images/landing_mobile_bk.png',
             width: double.infinity,

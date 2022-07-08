@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fokabay/Models/events_model.dart';
+import 'package:fokabay/Models/register_workshop.dart';
 import 'package:fokabay/Network/get_dio.dart';
 import 'package:fokabay/Repository/workshop_services.dart';
 
@@ -27,5 +28,19 @@ class WorkShopProvider extends ChangeNotifier {
   setSelectedEvent(selectedEventValue) {
     events = selectedEventValue;
     notifyListeners();
+  }
+
+  Future userWorkshopRegister(RegisterWorkshop registerWorkshop) async {
+    return await workShopServices
+        .userRegisterWorkshop(registerWorkshop)
+        .then((value) async {
+      if (value.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    }).catchError((error) {
+      throw error.toString();
+    });
   }
 }

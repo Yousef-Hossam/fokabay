@@ -4,4 +4,6 @@ class ApiRoutes {
   static const getEvent = "${baseUrl}event/";
 
   static const postEvent = "${baseUrl}event";
+
+  static const postRegister = "${baseUrl}customer";
 }

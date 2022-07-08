@@ -387,8 +387,9 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                             onPressed: () async {
                               await workShopProvider
                                   .setSelectedEvent(workShopModel);
-                              Navigator.of(context)
-                                  .pushNamed(DescriptionPage.route);
+                              Navigator.of(context).pushNamed(
+                                  DescriptionPage.route,
+                                  arguments: workShopModel);
                             })),
                   )
                 ],

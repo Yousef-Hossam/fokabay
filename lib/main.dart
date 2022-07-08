@@ -40,9 +40,7 @@ class MyApp extends StatelessWidget {
           RegisterPage.route: (context) => RegisterPage(),
         },
         title: 'Fouka bay',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'AlrightSans'),
         home: LandingPage(),
         debugShowCheckedModeBanner: false,
       ),
