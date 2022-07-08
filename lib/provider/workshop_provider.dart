@@ -7,6 +7,7 @@ class WorkShopProvider extends ChangeNotifier {
   WorkShopServices workShopServices = new WorkShopServices(GetDio().getDio());
 
   List<Events> listWorkshops = [];
+  late Events events;
 
   Future getAllEvents() async {
     return await workShopServices.getWorkShops().then((value) async {
@@ -21,5 +22,10 @@ class WorkShopProvider extends ChangeNotifier {
     }).catchError((error) {
       throw error.toString();
     });
+  }
+
+  setSelectedEvent(selectedEventValue) {
+    events = selectedEventValue;
+    notifyListeners();
   }
 }

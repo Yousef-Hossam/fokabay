@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fokabay/Screens/description_page.dart';
 import 'package:fokabay/Screens/landing_page.dart';
+import 'package:fokabay/Screens/register_page.dart';
 import 'package:fokabay/Screens/workshops_page.dart';
 import 'package:fokabay/provider/workshop_provider.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
           LandingPage.route: (context) => LandingPage(),
           WorkShops.route: (context) => WorkShops(),
           DescriptionPage.route: (context) => DescriptionPage(),
+          RegisterPage.route: (context) => RegisterPage(),
         },
         title: 'Fouka bay',
         theme: ThemeData(
