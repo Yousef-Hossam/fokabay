@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fokabay/valditor.dart';
 
 class RegisterPage extends StatefulWidget {
   static const String route = '/register';
@@ -11,10 +12,12 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: _formKey,
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Color(0xff71B3E3),
@@ -28,11 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
           height: 60,
           fit: BoxFit.contain,
         ),
-        key:_formKey,
-
-        //  title: Text('fffff'),
       ),
-      key:,
       body: SafeArea(
         child: Container(
           width: double.infinity,
@@ -95,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     //   color: Colors.black12,
                     child: TextFormField(
                       autocorrect: true,
-                      keyboardType:TextInputType.name,
+                      keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.black12,
@@ -106,11 +105,11 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Colors.black45,
                             fontWeight: FontWeight.bold),
                       ),
-                      validator:(value){
-                        if(value!.isEmpty||value.length<1){
-                          return 'please enter vaild name' ;
-
-                        }else return null ;
+                      validator: (value) {
+                        if (value!.isEmpty || value.length < 1) {
+                          return 'please enter vaild name';
+                        } else
+                          return null;
                       },
                     ),
                   ),
@@ -122,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     //   color: Colors.black12,
                     child: TextFormField(
                       autocorrect: true,
-                      keyboardType:TextInputType.emailAddress,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.black12,
@@ -133,6 +132,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Colors.black45,
                             fontWeight: FontWeight.bold),
                       ),
+                      validator: (value) {
+                        return isEmailValid(value!);
+                      },
                     ),
                   ),
                   SizedBox(
@@ -143,7 +145,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     //   color: Colors.black12,
                     child: TextFormField(
                       autocorrect: true,
-                      keyboardType:TextInputType.phone,
+                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.black12,
@@ -169,7 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           //   color: Colors.black12,
                           child: TextFormField(
                             autocorrect: true,
-                            keyboardType:TextInputType.text,
+                            keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.black12,
