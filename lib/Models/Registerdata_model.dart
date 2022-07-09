@@ -37,7 +37,7 @@ class RegisterEvent {
         firstName: json["firstName"] == null ? null : json["firstName"],
         lastName: json["lastName"] == null ? null : json["lastName"],
         mobileNumber:
-            json["mobileNumber"] == null ? null : json["mobileNumber"],
+            json["mobilenumber"] == null ? null : json["mobilenumber"],
         unitNumber: json["unitNumber"] == null ? null : json["unitNumber"],
         registeredEvents: json["registeredEvents"] == null
             ? null
@@ -51,7 +51,7 @@ class RegisterEvent {
         "noOfAttendeienc": noOfAttendeienc == null ? null : noOfAttendeienc,
         "firstName": firstName == null ? null : firstName,
         "lastName": lastName == null ? null : lastName,
-        "mobileNumber": mobileNumber == null ? null : mobileNumber,
+        "mobilenumber": mobileNumber == null ? null : mobileNumber,
         "unitNumber": unitNumber == null ? null : unitNumber,
         "registeredEvents": registeredEvents == null
             ? null

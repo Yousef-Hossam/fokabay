@@ -103,12 +103,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.memory(
-                base64Decode(workShopModel.imageBase64.toString()),
+              Image.asset("images/deafult_event_background.jpeg",
                 height: 190,
                 width: wd * 0.8,
-                fit: BoxFit.cover,
-              ),
+                fit: BoxFit.cover,),
               SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(4.0),

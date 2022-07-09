@@ -173,12 +173,11 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.memory(
-                base64Decode(workShopModel.imageBase64.toString()),
+              Image.asset("images/deafult_event_background.jpeg",
                 height: 210,
                 width: 210,
-                fit: BoxFit.cover,
-              ),
+                fit: BoxFit.cover,),
+
               SizedBox(width: 20),
               Flexible(
                   child: Padding(
