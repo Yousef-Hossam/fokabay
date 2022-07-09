@@ -35,9 +35,9 @@ class WorkShopProvider extends ChangeNotifier {
         .userRegisterWorkshop(registerWorkshop)
         .then((value) async {
       if (value.statusCode == 200) {
-        return true;
+        return value;
       } else {
-        return false;
+        return 'Error';
       }
     }).catchError((error) {
       throw error.toString();

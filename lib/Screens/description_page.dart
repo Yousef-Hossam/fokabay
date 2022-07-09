@@ -325,17 +325,19 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400))
                           ])),
+                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Date',
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w400)),
+                                  fontWeight: FontWeight.w700)),
                           SizedBox(height: 4),
                           Text(
                               DateFormat("dd").format(dateFormat.parse(
@@ -353,16 +355,18 @@ class _DescriptionPageState extends State<DescriptionPage> {
                         ],
                       ),
                       Column(
+                        // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Time',
+                          Text('Time     ',
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w400)),
+                                  fontWeight: FontWeight.w700)),
                           SizedBox(height: 4),
                           Text(
-                              DateFormat.jm().format(dateFormat
-                                  .parse(workShopModel.datetime.toString())),
+                              DateFormat.jm().format(dateFormat.parse(
+                                      workShopModel.datetime.toString())) +
+                                  '   ',
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -384,7 +388,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w400)),
+                                  fontWeight: FontWeight.w700)),
                           SizedBox(height: 4),
                           Text(
                               workShopModel.durationHours.toString() +
@@ -401,7 +405,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w400)),
+                                  fontWeight: FontWeight.w700)),
                           SizedBox(height: 4),
                           Text(workShopModel.minAge.toString(),
                               style: TextStyle(
@@ -412,29 +416,27 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       )
                     ],
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(bottom: 6.0),
-                  //   child: Text(workShopModel.datetime.toString(),
-                  //       style: TextStyle(
-                  //           fontSize: 18,
-                  //           color: Colors.black,
-                  //           fontWeight: FontWeight.w400)),
-                  // ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(bottom: 6.0),
-                  //   child: Text(workShopModel.durationHours.toString(),
-                  //       style: TextStyle(
-                  //           fontSize: 18,
-                  //           color: Colors.black,
-                  //           fontWeight: FontWeight.w400)),
-                  // ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text('Description',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700)),
+                  SizedBox(height: 5),
+                  Text(workShopModel.description.toString(),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400)),
                   Align(
                     alignment: Alignment.center,
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 12.0, top: 12.0),
                       child: SizedBox(
                         height: 40,
-                        width: 140,
+                        width: 150,
                         child: ButtonTheme(
                             //minWidth: 200.0,
                             //   height:32.h,

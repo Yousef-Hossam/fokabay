@@ -47,35 +47,35 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
           fit: BoxFit.contain,
         ),
       ),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Form(
           key: _formKey,
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    w > 800
-                        ? 'images/desktop_register.png'
-                        : 'images/mobile_register.png',
-                  ),
-                  fit: BoxFit.cover),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal:
-                    w > 800 ? MediaQuery.of(context).size.width * 0.24 : 12,
+          child: Stack(
+            children: [
+              Image.asset(
+                w > 800
+                    ? 'images/desktop_register.png'
+                    : 'images/mobile_register.png',
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                fit: BoxFit.fill,
               ),
-              child: Padding(
-                padding: EdgeInsets.only(
-                    bottom:
-                        h > 800 ? MediaQuery.of(context).size.height * .12 : 4),
-                child: Container(
-                  child: cardRegister(),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal:
+                      w > 800 ? MediaQuery.of(context).size.width * 0.24 : 12,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: h > 800
+                          ? MediaQuery.of(context).size.height * .12
+                          : 4),
+                  child: Container(
+                    child: cardRegister(),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ),
@@ -222,7 +222,7 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                                   fontWeight: FontWeight.bold),
                             ),
                             validator: (value) {
-                              if (value!.isEmpty || value == null) {
+                              if (value!.isEmpty) {
                                 return 'please enter vaild unit number';
                               } else
                                 return null;
@@ -234,21 +234,6 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                         rowFlex: 1,
                         child: Container(
                           padding: EdgeInsets.all(10),
-                          //   color: Colors.black12,
-                          //  width: wd * 0.21,
-                          // child: TextField(
-                          //   autocorrect: true,
-                          //   decoration: InputDecoration(
-                          //     filled: true,
-                          //     fillColor: Colors.black12,
-                          //     border: OutlineInputBorder(),
-                          //     hintText: 'No. of attendees',
-                          //     hintStyle: TextStyle(
-                          //         fontSize: 16,
-                          //         color: Colors.black45,
-                          //         fontWeight: FontWeight.bold),
-                          //   ),
-                          // ),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 4.0),
                             child: FormField<int>(
@@ -259,11 +244,6 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                                       fillColor: Color(0xffE8E8E8),
                                       contentPadding:
                                           EdgeInsets.fromLTRB(4, 4, 4, 4),
-                                      // labelText: "hi",
-                                      // labelStyle: textStyle,
-                                      // labelText: _dropdownValue == null
-                                      //     ? 'Where are you from'
-                                      //     : 'From',
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(1.0))),
@@ -394,7 +374,7 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                                                                         context)
                                                                     .size
                                                                     .height *
-                                                                .4,
+                                                                .5,
                                                             // width:350.w,
                                                             child: MediaQuery
                                                                 .removePadding(
@@ -410,8 +390,8 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                                                                 children: [
                                                                   Image.asset(
                                                                     'images/success.png',
-                                                                    width: 120,
-                                                                    height: 115,
+                                                                    width: 150,
+                                                                    height: 125,
                                                                   ),
                                                                   SizedBox(
                                                                     height: 10,
@@ -423,12 +403,42 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                                                                         Alignment
                                                                             .center,
                                                                     child: Text(
-                                                                      "  Thank you for registration.\n   We are working hard to find the best service and deals for you.\n   Shortly you will find a confirmation in your email.",
+                                                                      value.toString() ==
+                                                                              "sucess"
+                                                                          ? "  Thank you for registration."
+                                                                          : "Failed to register",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              18,
+                                                                          fontWeight: FontWeight
+                                                                              .bold,
+                                                                          color:
+                                                                              Colors.black),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                    ),
+                                                                  )),
+                                                                  SizedBox(
+                                                                    height: 5,
+                                                                  ),
+                                                                  Container(
+                                                                      child:
+                                                                          Align(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    child: Text(
+                                                                      value.toString() ==
+                                                                              "success"
+                                                                          ? "   Shortly you will find a confirmation in your email."
+                                                                          : value
+                                                                              .toString(),
                                                                       style: TextStyle(
                                                                           fontSize:
                                                                               16,
                                                                           fontWeight: FontWeight
-                                                                              .w600,
+                                                                              .w400,
                                                                           color:
                                                                               Colors.black),
                                                                       textAlign:

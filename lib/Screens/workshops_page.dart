@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:fokabay/Models/events_model.dart';
-import 'package:fokabay/Models/workshop_model.dart';
 import 'package:fokabay/Screens/description_page.dart';
 import 'package:fokabay/provider/workshop_provider.dart';
 import 'package:intl/intl.dart';
@@ -21,33 +20,6 @@ class WorkShops extends StatefulWidget {
 class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
   late WorkShopProvider workShopProvider;
   DateFormat dateFormat = new DateFormat('dd-MM-yyyy hh:mm a');
-  List<WorkShopModel> listWorkShop = [
-    WorkShopModel(
-        image: 'images/test.png',
-        duration: '5 July 2022',
-        name: 'Tie Die',
-        time: 'Friday 11:00 AM'),
-    WorkShopModel(
-        image: 'images/test.png',
-        duration: '5 July 2022',
-        name: 'Tie Die',
-        time: 'Friday 11:00 AM'),
-    WorkShopModel(
-        image: 'images/test.png',
-        duration: '2 Hours',
-        name: 'Tie Die',
-        time: 'Friday 11:00 AM'),
-    WorkShopModel(
-        image: 'images/test.png',
-        duration: '5 July 2022',
-        name: 'Tie Die',
-        time: 'Friday 11:00 AM'),
-    WorkShopModel(
-        image: 'images/test.png',
-        duration: '5 July 2022',
-        name: 'Tie Die',
-        time: 'Friday 11:00 AM'),
-  ];
 
   // @override
   // void initState() {
@@ -328,17 +300,20 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                           children: [
                             Expanded(
                                 child: Text(
-                                    workShopModel.eventName != null
-                                        ? workShopModel.eventName.toString()
-                                        : '',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w700))),
-                            const SizedBox(width: 15),
+                              workShopModel.eventName != null
+                                  ? workShopModel.eventName.toString()
+                                  : '',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                              maxLines: 1,
+                              softWrap: true,
+                            )),
+                            const SizedBox(width: 5),
                             Text('Workshop',
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400))
                           ])),
