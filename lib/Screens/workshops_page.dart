@@ -279,12 +279,11 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
-                child: Image.memory(
-                  base64Decode(workShopModel.imageBase64.toString()),
+                child:
+                Image.asset("images/deafult_event_background.jpeg",
                   height: 120,
                   width: 120,
-                  fit: BoxFit.cover,
-                ),
+                  fit: BoxFit.cover,),
               ),
               SizedBox(width: 10),
               Flexible(

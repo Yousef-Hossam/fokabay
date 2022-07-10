@@ -289,12 +289,11 @@ class _DescriptionPageState extends State<DescriptionPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
-                child: Image.memory(
-                  base64Decode(workShopModel.imageBase64.toString()),
+                child:
+                Image.asset("images/deafult_event_background.jpeg",
                   height: 160,
                   width: wd * 0.9,
-                  fit: BoxFit.cover,
-                ),
+                  fit: BoxFit.cover,),
               ),
               SizedBox(height: 10),
               Column(
