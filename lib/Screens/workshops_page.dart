@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:fokabay/Models/events_model.dart';
@@ -96,7 +94,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                             height: MediaQuery.of(context).size.height * 0.8,
                             width: MediaQuery.of(context).size.width * 0.6,
                             child: MediaQuery.removePadding(
-                              removeTop: false,
+                              removeTop: true,
                               removeBottom: false,
                               context: context,
                               child: Padding(
@@ -126,12 +124,13 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                           ),
                         )
                       : Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              left: 8.0, right: 8.0, bottom: 8.0),
                           child: Container(
                             height: MediaQuery.of(context).size.height * 0.8,
                             //    color: Color(0xffE5E5E5),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 4),
+                              padding: EdgeInsets.symmetric(horizontal: 2),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 4),
                                 child: ListView.builder(
@@ -173,11 +172,12 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset("images/deafult_event_background.jpeg",
+              Image.asset(
+                "images/deafult_event_background.jpeg",
                 height: 210,
                 width: 210,
-                fit: BoxFit.cover,),
-
+                fit: BoxFit.cover,
+              ),
               SizedBox(width: 20),
               Flexible(
                   child: Padding(
@@ -188,17 +188,21 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                            workShopModel.eventName != null
-                                ? workShopModel.eventName.toString()
-                                : '',
-                            style: TextStyle(
-                                fontSize: 40,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w700)),
+                        Expanded(
+                          child: Text(
+                              workShopModel.eventName != null
+                                  ? workShopModel.eventName.toString()
+                                  : '',
+                              style: TextStyle(
+                                  fontSize: 32,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w700),
+                              maxLines: 2,
+                              softWrap: true),
+                        ),
                         Text('Workshop',
                             style: TextStyle(
-                                fontSize: 24,
+                                fontSize: 18,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w400))
                       ],
@@ -279,11 +283,12 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
-                child:
-                Image.asset("images/deafult_event_background.jpeg",
+                child: Image.asset(
+                  "images/deafult_event_background.jpeg",
                   height: 120,
                   width: 120,
-                  fit: BoxFit.cover,),
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(width: 10),
               Flexible(

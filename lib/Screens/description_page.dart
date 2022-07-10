@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:fokabay/Models/events_model.dart';
 import 'package:fokabay/Screens/register_page.dart';
@@ -103,10 +101,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset("images/deafult_event_background.jpeg",
+              Image.asset(
+                "images/deafult_event_background.jpeg",
                 height: 190,
                 width: wd * 0.8,
-                fit: BoxFit.cover,),
+                fit: BoxFit.cover,
+              ),
               SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(4.0),
@@ -289,11 +289,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
-                child:
-                Image.asset("images/deafult_event_background.jpeg",
+                child: Image.asset(
+                  "images/deafult_event_background.jpeg",
                   height: 160,
                   width: wd * 0.9,
-                  fit: BoxFit.cover,),
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(height: 10),
               Column(
@@ -354,7 +355,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       Column(
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Time     ',
+                          Text('Time      ',
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
@@ -363,7 +364,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           Text(
                               DateFormat.jm().format(dateFormat.parse(
                                       workShopModel.datetime.toString())) +
-                                  '   ',
+                                  '    ',
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -404,7 +405,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                   color: Colors.black,
                                   fontWeight: FontWeight.w700)),
                           SizedBox(height: 4),
-                          Text(workShopModel.minAge.toString(),
+                          Text('Min ' + ' ' + workShopModel.minAge.toString(),
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,

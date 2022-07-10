@@ -15,6 +15,7 @@ class WorkShopProvider extends ChangeNotifier {
       if (value.statusCode == 200) {
         listWorkshops =
             List<Events>.from(value.data.map((x) => Events.fromMap(x)));
+        listWorkshops.sort((a, b) => a.datetime!.compareTo(b.datetime!));
         notifyListeners();
         return listWorkshops;
       } else {

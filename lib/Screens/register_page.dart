@@ -404,7 +404,7 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                                                                             .center,
                                                                     child: Text(
                                                                       value.toString() ==
-                                                                              "sucess"
+                                                                              "success"
                                                                           ? "  Thank you for registration."
                                                                           : "Failed to register",
                                                                       style: TextStyle(
