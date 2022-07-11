@@ -102,11 +102,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                "images/deafult_event_background.jpeg",
-                height: 190,
-                width: wd * 0.8,
-                fit: BoxFit.cover,
-              ),
+                  workShopModel.eventName!.contains('Brass')
+                      ? "images/bares_bk.jpg"
+                      : "images/deafult_event_background.jpeg",
+                  height: 190,
+                  width: wd * 0.8,
+                  fit: BoxFit.cover),
               SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(4.0),
@@ -116,12 +117,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     children: [
                       Text(workShopModel.eventName.toString(),
                           style: TextStyle(
-                              fontSize: 40,
+                              fontSize: 26,
                               color: Colors.black,
                               fontWeight: FontWeight.w700)),
                       Text('Workshop',
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.w400)),
                     ]),
@@ -138,7 +139,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           style: TextStyle(
                               fontSize: 26,
                               color: Colors.black,
-                              fontWeight: FontWeight.w400)),
+                              fontWeight: FontWeight.w700)),
                       SizedBox(
                         height: 5,
                       ),
@@ -162,7 +163,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                         style: TextStyle(
                             fontSize: 26,
                             color: Colors.black,
-                            fontWeight: FontWeight.w400)),
+                            fontWeight: FontWeight.w700)),
                     SizedBox(
                       height: 5,
                     ),
@@ -179,7 +180,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                         style: TextStyle(
                             fontSize: 26,
                             color: Colors.black,
-                            fontWeight: FontWeight.w400)),
+                            fontWeight: FontWeight.w700)),
                     SizedBox(
                       height: 5,
                     ),
@@ -195,7 +196,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           style: TextStyle(
                               fontSize: 26,
                               color: Colors.black,
-                              fontWeight: FontWeight.w400)),
+                              fontWeight: FontWeight.w700)),
                       SizedBox(
                         height: 5,
                       ),
@@ -213,7 +214,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   style: TextStyle(
                       fontSize: 26,
                       color: Colors.black,
-                      fontWeight: FontWeight.w400)),
+                      fontWeight: FontWeight.w700)),
               SizedBox(height: 5),
               Text(workShopModel.description.toString(),
                   style: TextStyle(
@@ -290,7 +291,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Image.asset(
-                  "images/deafult_event_background.jpeg",
+                  workShopModel.eventName!.contains('Brass')
+                      ? "images/bares_bk.jpg"
+                      : "images/deafult_event_background.jpeg",
                   height: 160,
                   width: wd * 0.9,
                   fit: BoxFit.cover,

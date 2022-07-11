@@ -40,11 +40,15 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
         shadowColor: Color(0xff71B3E3).withOpacity(0.6),
         bottomOpacity: 5,
         centerTitle: true,
-        title: Image.asset(
-          'images/foka_bay.png',
-          width: 200,
-          height: 70,
-          fit: BoxFit.contain,
+        title: Column(
+          children: [
+            Image.asset(
+              'images/foka_bay.png',
+              width: 200,
+              height: 70,
+              fit: BoxFit.contain,
+            ),
+          ],
         ),
 
         //  title: Text('fffff'),
@@ -173,7 +177,9 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                "images/deafult_event_background.jpeg",
+                workShopModel.eventName!.contains('Brass')
+                    ? "images/bares.jpg"
+                    : "images/deafult_event_background.jpeg",
                 height: 210,
                 width: 210,
                 fit: BoxFit.cover,
@@ -284,7 +290,9 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Image.asset(
-                  "images/deafult_event_background.jpeg",
+                  workShopModel.eventName!.contains('Brass')
+                      ? "images/bares.jpg"
+                      : "images/deafult_event_background.jpeg",
                   height: 120,
                   width: 120,
                   fit: BoxFit.cover,
@@ -307,16 +315,16 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                                   ? workShopModel.eventName.toString()
                                   : '',
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
-                              maxLines: 1,
+                              maxLines: 2,
                               softWrap: true,
                             )),
                             const SizedBox(width: 5),
                             Text('Workshop',
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 10,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400))
                           ])),
