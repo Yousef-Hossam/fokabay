@@ -318,11 +318,11 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                     style: TextStyle(
                                         fontSize: 20,
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w700))),
+                                        fontWeight: FontWeight.bold))),
                             const SizedBox(width: 15),
                             Text('WorkShop',
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400))
                           ])),
@@ -338,7 +338,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w700)),
+                                  fontWeight: FontWeight.bold)),
                           SizedBox(height: 4),
                           Text(
                               DateFormat("dd").format(dateFormat.parse(
@@ -362,7 +362,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w700)),
+                                  fontWeight: FontWeight.bold)),
                           SizedBox(height: 4),
                           Text(
                               DateFormat.jm().format(dateFormat.parse(
@@ -389,7 +389,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w700)),
+                                  fontWeight: FontWeight.bold)),
                           SizedBox(height: 4),
                           Text(
                               workShopModel.durationHours.toString() +
@@ -406,7 +406,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w700)),
+                                  fontWeight: FontWeight.bold)),
                           SizedBox(height: 4),
                           Text('Min ' + ' ' + workShopModel.minAge.toString(),
                               style: TextStyle(
@@ -424,7 +424,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
-                          fontWeight: FontWeight.w700)),
+                          fontWeight: FontWeight.bold)),
                   SizedBox(height: 5),
                   Text(workShopModel.description.toString(),
                       style: TextStyle(
@@ -453,9 +453,28 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                         color: Colors.white,
                                         fontWeight: FontWeight.w500)),
                                 onPressed: () {
-                                  Navigator.of(context).pushNamed(
-                                    RegisterPage.route,
-                                  );
+                                  if (workShopModel.noOfSeats! > 0) {
+                                    Navigator.of(context).pushNamed(
+                                      RegisterPage.route,
+                                    );
+                                  } else {
+                                    showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (_) => new AlertDialog(
+                                              title: new Text(""),
+                                              content: new Text(
+                                                  "Sorry no available seats"),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  child: Text('OK!'),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                )
+                                              ],
+                                            ));
+                                  }
                                 })),
                       ),
                     ),

@@ -324,7 +324,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                             const SizedBox(width: 5),
                             Text('Workshop',
                                 style: TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 8,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400))
                           ])),
