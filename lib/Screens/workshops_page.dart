@@ -5,6 +5,7 @@ import 'package:fokabay/Screens/description_page.dart';
 import 'package:fokabay/provider/workshop_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class WorkShops extends StatefulWidget {
   static const String route = '/events';
@@ -18,6 +19,8 @@ class WorkShops extends StatefulWidget {
 class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
   late WorkShopProvider workShopProvider;
   DateFormat dateFormat = new DateFormat('dd-MM-yyyy hh:mm a');
+  bool isJuly = true;
+  bool isAugust = false;
 
   // @override
   // void initState() {
@@ -36,7 +39,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Color(0xff71B3E3),
-        toolbarHeight: 100,
+        toolbarHeight: 120,
         shadowColor: Color(0xff71B3E3).withOpacity(0.6),
         bottomOpacity: 5,
         centerTitle: true,
@@ -48,6 +51,142 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
               height: 70,
               fit: BoxFit.contain,
             ),
+            SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: Container(
+                width: w > 600 ? w * 0.2 : w * 0.35,
+                height: 40,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(24.0)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          isJuly = true;
+                          isAugust = false;
+                        });
+                      },
+                      child: Container(
+                        width: ResponsiveValue(
+                          context,
+                          defaultValue: 58.0,
+                          valueWhen: const [
+                            Condition.smallerThan(
+                              name: MOBILE,
+                              value: 58.0,
+                            ),
+                            Condition.largerThan(
+                              name: TABLET,
+                              value: 100.0,
+                            )
+                          ],
+                        ).value,
+                        height: 35,
+                        decoration: new BoxDecoration(
+                          color:
+                              isJuly == true ? Color(0xff92B6C6) : Colors.white,
+                          borderRadius: new BorderRadius.circular(18.0),
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 6.0, right: 6.0, top: 4.0, bottom: 4.0),
+                            child: Text(
+                              '  July  ',
+                              //    textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: ResponsiveValue(
+                                  context,
+                                  defaultValue: 10.0,
+                                  valueWhen: const [
+                                    Condition.smallerThan(
+                                      name: MOBILE,
+                                      value: 16.0,
+                                    ),
+                                    Condition.largerThan(
+                                      name: TABLET,
+                                      value: 24.0,
+                                    )
+                                  ],
+                                ).value,
+                                color: isJuly == true
+                                    ? Colors.white
+                                    : Color(0xff92B6C6),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          isJuly = false;
+                          isAugust = true;
+                        });
+                      },
+                      child: Container(
+                        height: 35,
+                        width: ResponsiveValue(
+                          context,
+                          defaultValue: 65.0,
+                          valueWhen: const [
+                            Condition.smallerThan(
+                              name: MOBILE,
+                              value: 65.0,
+                            ),
+                            Condition.largerThan(
+                              name: TABLET,
+                              value: 100.0,
+                            )
+                          ],
+                        ).value,
+                        decoration: new BoxDecoration(
+                          color: isAugust == true
+                              ? Color(0xff92B6C6)
+                              : Colors.white,
+                          borderRadius: new BorderRadius.circular(18.0),
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              ' August ',
+                              //   textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: ResponsiveValue(
+                                    context,
+                                    defaultValue: 14.0,
+                                    valueWhen: const [
+                                      Condition.smallerThan(
+                                        name: MOBILE,
+                                        value: 16.0,
+                                      ),
+                                      Condition.largerThan(
+                                        name: TABLET,
+                                        value: 24.0,
+                                      )
+                                    ],
+                                  ).value,
+                                  color: isAugust == true
+                                      ? Colors.white
+                                      : Color(0xff92B6C6)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
 
@@ -177,9 +316,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                workShopModel.eventName!.contains('Brass')
-                    ? "images/bares.jpg"
-                    : "images/deafult_event_background.jpeg",
+                "images/deafult_event_background.jpeg",
                 height: 210,
                 width: 210,
                 fit: BoxFit.cover,
@@ -290,9 +427,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Image.asset(
-                  workShopModel.eventName!.contains('Brass')
-                      ? "images/bares.jpg"
-                      : "images/deafult_event_background.jpeg",
+                  "images/deafult_event_background.jpeg",
                   height: 120,
                   width: 120,
                   fit: BoxFit.cover,
@@ -324,7 +459,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                             const SizedBox(width: 5),
                             Text('Workshop',
                                 style: TextStyle(
-                                    fontSize: 8,
+                                    fontSize: 12,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400))
                           ])),

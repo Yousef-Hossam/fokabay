@@ -101,13 +101,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                  workShopModel.eventName!.contains('Brass')
-                      ? "images/bares_bk.jpg"
-                      : "images/deafult_event_background.jpeg",
-                  height: 190,
-                  width: wd * 0.8,
-                  fit: BoxFit.cover),
+              Image.asset("images/deafult_event_background.jpeg",
+                  height: 190, width: wd * 0.8, fit: BoxFit.cover),
               SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(4.0),
@@ -225,45 +220,65 @@ class _DescriptionPageState extends State<DescriptionPage> {
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
-                  height: 50,
-                  width: 180,
-                  child: ButtonTheme(
-                      //minWidth: 200.0,
-                      //   height:32.h,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          side: const BorderSide(color: Color(0xFF71B3E3))),
-                      child: RaisedButton(
-                          color: Color(0xFF71B3E3),
-                          child: Text("Register now ",
-                              style: TextStyle(
-                                  fontSize: 26,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
-                          onPressed: () {
-                            if (workShopModel.noOfSeats! > 0) {
-                              Navigator.of(context).pushNamed(
-                                RegisterPage.route,
-                              );
-                            } else {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => new AlertDialog(
-                                        title: new Text(""),
-                                        content: new Text(
-                                            "Sorry no available seats"),
-                                        actions: <Widget>[
-                                          FlatButton(
-                                            child: Text('OK!'),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                          )
-                                        ],
-                                      ));
-                            }
-                          })),
-                ),
+                    height: 50,
+                    width: 180,
+                    child:
+                        int.parse(DateFormat("dd").format(dateFormat.parse(workShopModel.datetime.toString()))) -
+                                    DateTime.now().day <
+                                3
+                            ? ButtonTheme(
+                                //minWidth: 200.0,
+                                //   height:32.h,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    side: const BorderSide(
+                                        color: Color(0xFF71B3E3))),
+                                child: RaisedButton(
+                                    color: Color(0xFF71B3E3),
+                                    child: Text("Register now",
+                                        style: TextStyle(
+                                            fontSize: 26,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500)),
+                                    onPressed: () {
+                                      if (workShopModel.noOfSeats! > 0) {
+                                        Navigator.of(context).pushNamed(
+                                          RegisterPage.route,
+                                        );
+                                      } else {
+                                        showDialog(
+                                            context: context,
+                                            barrierDismissible: false,
+                                            builder: (_) => new AlertDialog(
+                                                  title: new Text(""),
+                                                  content: new Text(
+                                                      "Sorry no available seats"),
+                                                  actions: <Widget>[
+                                                    FlatButton(
+                                                      child: Text('OK!'),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    )
+                                                  ],
+                                                ));
+                                      }
+                                    }))
+                            : ButtonTheme(
+                                //minWidth: 200.0,
+                                //   height:32.h,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    side: const BorderSide(
+                                        color: Colors.black12)),
+                                child: RaisedButton(
+                                    color: Colors.black12,
+                                    child: Text("Coming Soon",
+                                        style: TextStyle(
+                                            fontSize: 26,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400)),
+                                    onPressed: null))),
               )
             ],
           ),
@@ -291,9 +306,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Image.asset(
-                  workShopModel.eventName!.contains('Brass')
-                      ? "images/bares_bk.jpg"
-                      : "images/deafult_event_background.jpeg",
+                  "images/deafult_event_background.jpeg",
                   height: 160,
                   width: wd * 0.9,
                   fit: BoxFit.cover,
@@ -436,47 +449,65 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 12.0, top: 12.0),
                       child: SizedBox(
-                        height: 40,
-                        width: 150,
-                        child: ButtonTheme(
-                            //minWidth: 200.0,
-                            //   height:32.h,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                                side:
-                                    const BorderSide(color: Color(0xFF71B3E3))),
-                            child: RaisedButton(
-                                color: Color(0xFF71B3E3),
-                                child: Text("Register now",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500)),
-                                onPressed: () {
-                                  if (workShopModel.noOfSeats! > 0) {
-                                    Navigator.of(context).pushNamed(
-                                      RegisterPage.route,
-                                    );
-                                  } else {
-                                    showDialog(
-                                        context: context,
-                                        barrierDismissible: false,
-                                        builder: (_) => new AlertDialog(
-                                              title: new Text(""),
-                                              content: new Text(
-                                                  "Sorry no available seats"),
-                                              actions: <Widget>[
-                                                FlatButton(
-                                                  child: Text('OK!'),
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                )
-                                              ],
-                                            ));
-                                  }
-                                })),
-                      ),
+                          height: 40,
+                          width: 150,
+                          child: int.parse(DateFormat("dd").format(dateFormat.parse(workShopModel.datetime.toString()))) -
+                                      DateTime.now().day <
+                                  3
+                              ? ButtonTheme(
+                                  //minWidth: 200.0,
+                                  //   height:32.h,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      side: const BorderSide(
+                                          color: Color(0xFF71B3E3))),
+                                  child: RaisedButton(
+                                      color: Color(0xFF71B3E3),
+                                      child: Text("Register now",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500)),
+                                      onPressed: () {
+                                        if (workShopModel.noOfSeats! > 0) {
+                                          Navigator.of(context).pushNamed(
+                                            RegisterPage.route,
+                                          );
+                                        } else {
+                                          showDialog(
+                                              context: context,
+                                              barrierDismissible: false,
+                                              builder: (_) => new AlertDialog(
+                                                    title: new Text(""),
+                                                    content: new Text(
+                                                        "Sorry no available seats"),
+                                                    actions: <Widget>[
+                                                      FlatButton(
+                                                        child: Text('OK!'),
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                      )
+                                                    ],
+                                                  ));
+                                        }
+                                      }))
+                              : ButtonTheme(
+                                  //minWidth: 200.0,
+                                  //   height:32.h,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      side: const BorderSide(
+                                          color: Colors.black12)),
+                                  child: RaisedButton(
+                                      color: Colors.black12,
+                                      child: Text("Coming Soon",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400)),
+                                      onPressed: null))),
                     ),
                   )
                 ],
