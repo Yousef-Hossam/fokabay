@@ -91,7 +91,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                         height: 35,
                         decoration: new BoxDecoration(
                           color:
-                              isJuly == true ? Color(0xff92B6C6) : Colors.white,
+                              isJuly == true ? Color(0xff71B3E3) : Colors.white,
                           borderRadius: new BorderRadius.circular(18.0),
                         ),
                         child: Center(
@@ -104,7 +104,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                               style: TextStyle(
                                 fontSize: ResponsiveValue(
                                   context,
-                                  defaultValue: 10.0,
+                                  defaultValue: 16.0,
                                   valueWhen: const [
                                     Condition.smallerThan(
                                       name: MOBILE,
@@ -118,7 +118,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                                 ).value,
                                 color: isJuly == true
                                     ? Colors.white
-                                    : Color(0xff92B6C6),
+                                    : Color(0xff71B3E3),
                               ),
                             ),
                           ),
@@ -150,7 +150,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                         ).value,
                         decoration: new BoxDecoration(
                           color: isAugust == true
-                              ? Color(0xff92B6C6)
+                              ? Color(0xff71B3E3)
                               : Colors.white,
                           borderRadius: new BorderRadius.circular(18.0),
                         ),
@@ -163,7 +163,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                               style: TextStyle(
                                   fontSize: ResponsiveValue(
                                     context,
-                                    defaultValue: 14.0,
+                                    defaultValue: 16.0,
                                     valueWhen: const [
                                       Condition.smallerThan(
                                         name: MOBILE,
@@ -177,7 +177,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                                   ).value,
                                   color: isAugust == true
                                       ? Colors.white
-                                      : Color(0xff92B6C6)),
+                                      : Color(0xff71B3E3)),
                             ),
                           ),
                         ),
