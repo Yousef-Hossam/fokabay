@@ -222,63 +222,60 @@ class _DescriptionPageState extends State<DescriptionPage> {
                 child: SizedBox(
                     height: 50,
                     width: 180,
-                    child:
-                        int.parse(DateFormat("dd").format(dateFormat.parse(workShopModel.datetime.toString()))) -
+                    child: int.parse(DateFormat("dd").format(dateFormat.parse(workShopModel.datetime.toString()))) -
                                     DateTime.now().day <
-                                3
-                            ? ButtonTheme(
-                                //minWidth: 200.0,
-                                //   height:32.h,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    side: const BorderSide(
-                                        color: Color(0xFF71B3E3))),
-                                child: RaisedButton(
-                                    color: Color(0xFF71B3E3),
-                                    child: Text("Register now",
-                                        style: TextStyle(
-                                            fontSize: 26,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500)),
-                                    onPressed: () {
-                                      if (workShopModel.noOfSeats! > 0) {
-                                        Navigator.of(context).pushNamed(
-                                          RegisterPage.route,
-                                        );
-                                      } else {
-                                        showDialog(
-                                            context: context,
-                                            barrierDismissible: false,
-                                            builder: (_) => new AlertDialog(
-                                                  title: new Text(""),
-                                                  content: new Text(
-                                                      "Sorry no available seats"),
-                                                  actions: <Widget>[
-                                                    FlatButton(
-                                                      child: Text('OK!'),
-                                                      onPressed: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                    )
-                                                  ],
-                                                ));
-                                      }
-                                    }))
-                            : ButtonTheme(
-                                //minWidth: 200.0,
-                                //   height:32.h,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    side: const BorderSide(
-                                        color: Colors.black12)),
-                                child: RaisedButton(
-                                    color: Colors.black12,
-                                    child: Text("Coming Soon",
-                                        style: TextStyle(
-                                            fontSize: 26,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w400)),
-                                    onPressed: null))),
+                               2 &&
+                            int.parse(DateFormat("MM").format(dateFormat.parse(workShopModel.datetime.toString()))) ==
+                                DateTime.now().month
+                        ? ButtonTheme(
+                            //minWidth: 200.0,
+                            //   height:32.h,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.0),
+                                side:
+                                    const BorderSide(color: Color(0xFF71B3E3))),
+                            child: RaisedButton(
+                                color: Color(0xFF71B3E3),
+                                child: Text("Register now",
+                                    style: TextStyle(
+                                        fontSize: 26,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500)),
+                                onPressed: () {
+                                  if (workShopModel.noOfSeats! > 0) {
+                                    Navigator.of(context).pushNamed(
+                                      RegisterPage.route,
+                                    );
+                                  } else {
+                                    showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (_) => new AlertDialog(
+                                              title: new Text(""),
+                                              content: new Text(
+                                                  "Sorry no available seats"),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  child: Text('OK!'),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                )
+                                              ],
+                                            ));
+                                  }
+                                }))
+                        : ButtonTheme(
+                            //minWidth: 200.0,
+                            //   height:32.h,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.0),
+                                side: const BorderSide(color: Colors.black12)),
+                            child: RaisedButton(
+                                color: Colors.black12,
+                                child:
+                                    Text("Coming Soon", style: TextStyle(fontSize: 26, color: Colors.white, fontWeight: FontWeight.w400)),
+                                onPressed: null))),
               )
             ],
           ),
@@ -451,9 +448,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       child: SizedBox(
                           height: 40,
                           width: 150,
-                          child: int.parse(DateFormat("dd").format(dateFormat.parse(workShopModel.datetime.toString()))) -
-                                      DateTime.now().day <
-                                  3
+                          child: int.parse(DateFormat("dd").format(dateFormat.parse(workShopModel.datetime.toString()))) - DateTime.now().day < 2 &&
+                                  int.parse(DateFormat("MM").format(dateFormat.parse(workShopModel.datetime.toString()))) ==
+                                      DateTime.now().month
                               ? ButtonTheme(
                                   //minWidth: 200.0,
                                   //   height:32.h,
@@ -502,11 +499,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                           color: Colors.black12)),
                                   child: RaisedButton(
                                       color: Colors.black12,
-                                      child: Text("Coming Soon",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400)),
+                                      child: Text("Coming Soon", style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w400)),
                                       onPressed: null))),
                     ),
                   )

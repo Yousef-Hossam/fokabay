@@ -34,6 +34,12 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
     workShopProvider = Provider.of<WorkShopProvider>(context, listen: true);
     print("length" + workShopProvider.listWorkshops.length.toString());
     // workShopProvider.getAllEvents();
+    isJuly == true
+        ? workShopProvider.listWorkshops.removeWhere((element) =>
+            DateFormat("MMMM")
+                .format(dateFormat.parse(element.datetime.toString())) ==
+            'August')
+        : null;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
@@ -57,17 +63,22 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
             Padding(
               padding: const EdgeInsets.only(bottom: 4.0),
               child: Container(
-                width: w > 600 ? w * 0.2 : w * 0.35,
+                width: w > 600 ? 250 : 142,
                 height: 40,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(24.0)),
+                    borderRadius: BorderRadius.circular(8.0)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
+                        await workShopProvider.getAllEvents();
+                        workShopProvider.listWorkshops.removeWhere((element) =>
+                            DateFormat("MMMM").format(dateFormat
+                                .parse(element.datetime.toString())) ==
+                            'August');
                         setState(() {
                           isJuly = true;
                           isAugust = false;
@@ -76,23 +87,23 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                       child: Container(
                         width: ResponsiveValue(
                           context,
-                          defaultValue: 58.0,
+                          defaultValue: 60.0,
                           valueWhen: const [
                             Condition.smallerThan(
                               name: MOBILE,
-                              value: 58.0,
+                              value: 65.0,
                             ),
                             Condition.largerThan(
                               name: TABLET,
-                              value: 100.0,
+                              value: 120.0,
                             )
                           ],
                         ).value,
-                        height: 35,
+                        height: 36,
                         decoration: new BoxDecoration(
                           color:
                               isJuly == true ? Color(0xff71B3E3) : Colors.white,
-                          borderRadius: new BorderRadius.circular(18.0),
+                          borderRadius: new BorderRadius.circular(6.0),
                         ),
                         child: Center(
                           child: Padding(
@@ -126,17 +137,22 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                       ),
                     ),
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
+                        await workShopProvider.getAllEvents();
+                        workShopProvider.listWorkshops.removeWhere((element) =>
+                            DateFormat("MMMM").format(dateFormat
+                                .parse(element.datetime.toString())) ==
+                            'July');
                         setState(() {
                           isJuly = false;
                           isAugust = true;
                         });
                       },
                       child: Container(
-                        height: 35,
+                        height: 36,
                         width: ResponsiveValue(
                           context,
-                          defaultValue: 65.0,
+                          defaultValue: 70.0,
                           valueWhen: const [
                             Condition.smallerThan(
                               name: MOBILE,
@@ -144,7 +160,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                             ),
                             Condition.largerThan(
                               name: TABLET,
-                              value: 100.0,
+                              value: 120.0,
                             )
                           ],
                         ).value,
@@ -152,7 +168,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                           color: isAugust == true
                               ? Color(0xff71B3E3)
                               : Colors.white,
-                          borderRadius: new BorderRadius.circular(18.0),
+                          borderRadius: new BorderRadius.circular(6.0),
                         ),
                         child: Center(
                           child: Padding(

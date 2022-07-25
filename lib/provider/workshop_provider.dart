@@ -11,6 +11,8 @@ class WorkShopProvider extends ChangeNotifier {
   List<Events> listWorkshops = [];
   late Events events;
   DateFormat dateFormat = new DateFormat('dd-MM-yyyy hh:mm a');
+  DateTime date = DateTime.now();
+  //DateTime today = DateTime(date.year, date.month, date.day + 1451);
 
   Future getAllEvents() async {
     return await workShopServices.getWorkShops().then((value) async {
@@ -20,8 +22,16 @@ class WorkShopProvider extends ChangeNotifier {
         listWorkshops.sort((a, b) => a.datetime!.compareTo(b.datetime!));
         listWorkshops.removeWhere((element) =>
             int.parse(DateFormat("dd")
-                .format(dateFormat.parse(element.datetime.toString()))) <
-            DateTime.now().day);
+                    .format(dateFormat.parse(element.datetime.toString()))) <
+                DateTime.now().day &&
+            int.parse(DateFormat("MM")
+                    .format(dateFormat.parse(element.datetime.toString()))) ==
+                DateTime.now().month);
+        // listWorkshops.removeWhere((element) =>
+        //     DateFormat("MMMM")
+        //         .format(dateFormat.parse(element.datetime.toString())) ==
+        //     'August');
+
         notifyListeners();
         return listWorkshops;
       } else {
