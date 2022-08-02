@@ -223,8 +223,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     height: 50,
                     width: 180,
                     child: int.parse(DateFormat("dd").format(dateFormat.parse(workShopModel.datetime.toString()))) -
-                                    DateTime.now().day <
-                               3 &&
+                                    DateTime.now().day < 4 &&
                             int.parse(DateFormat("MM").format(dateFormat.parse(workShopModel.datetime.toString()))) ==
                                 DateTime.now().month
                         ? ButtonTheme(
@@ -448,7 +447,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       child: SizedBox(
                           height: 40,
                           width: 150,
-                          child: int.parse(DateFormat("dd").format(dateFormat.parse(workShopModel.datetime.toString()))) - DateTime.now().day < 3 &&
+                          child: int.parse(DateFormat("dd").format(dateFormat.parse(workShopModel.datetime.toString()))) - DateTime.now().day < 4 &&
                                   int.parse(DateFormat("MM").format(dateFormat.parse(workShopModel.datetime.toString()))) ==
                                       DateTime.now().month
                               ? ButtonTheme(

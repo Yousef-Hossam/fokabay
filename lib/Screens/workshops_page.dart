@@ -19,8 +19,8 @@ class WorkShops extends StatefulWidget {
 class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
   late WorkShopProvider workShopProvider;
   DateFormat dateFormat = new DateFormat('dd-MM-yyyy hh:mm a');
-  bool isJuly = true;
-  bool isAugust = false;
+  bool isJuly = false;
+  bool isAugust = true;
 
   // @override
   // void initState() {
@@ -34,11 +34,11 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
     workShopProvider = Provider.of<WorkShopProvider>(context, listen: true);
     print("length" + workShopProvider.listWorkshops.length.toString());
     // workShopProvider.getAllEvents();
-    isJuly == true
+    isAugust == true
         ? workShopProvider.listWorkshops.removeWhere((element) =>
             DateFormat("MMMM")
                 .format(dateFormat.parse(element.datetime.toString())) ==
-            'August')
+            'July')
         : null;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -73,12 +73,12 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
-                      onTap: () async {
-                        await workShopProvider.getAllEvents();
-                        workShopProvider.listWorkshops.removeWhere((element) =>
-                            DateFormat("MMMM").format(dateFormat
-                                .parse(element.datetime.toString())) ==
-                            'August');
+                      onTap: () {
+                        // await workShopProvider.getAllEvents();
+                        // workShopProvider.listWorkshops.removeWhere((element) =>
+                        //     DateFormat("MMMM").format(dateFormat
+                        //         .parse(element.datetime.toString())) ==
+                        //     'August');
                         setState(() {
                           isJuly = true;
                           isAugust = false;
@@ -137,12 +137,12 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                       ),
                     ),
                     InkWell(
-                      onTap: () async {
-                        await workShopProvider.getAllEvents();
-                        workShopProvider.listWorkshops.removeWhere((element) =>
-                            DateFormat("MMMM").format(dateFormat
-                                .parse(element.datetime.toString())) ==
-                            'July');
+                      onTap: () {
+                        // await workShopProvider.getAllEvents();
+                        // workShopProvider.listWorkshops.removeWhere((element) =>
+                        //     DateFormat("MMMM").format(dateFormat
+                        //         .parse(element.datetime.toString())) ==
+                        //     'July');
                         setState(() {
                           isJuly = false;
                           isAugust = true;
