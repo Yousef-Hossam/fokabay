@@ -73,17 +73,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
-                      onTap: () {
-                        // await workShopProvider.getAllEvents();
-                        // workShopProvider.listWorkshops.removeWhere((element) =>
-                        //     DateFormat("MMMM").format(dateFormat
-                        //         .parse(element.datetime.toString())) ==
-                        //     'August');
-                        setState(() {
-                          isJuly = true;
-                          isAugust = false;
-                        });
-                      },
+                      onTap: null,
                       child: Container(
                         width: ResponsiveValue(
                           context,
@@ -137,17 +127,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
                       ),
                     ),
                     InkWell(
-                      onTap: () {
-                        // await workShopProvider.getAllEvents();
-                        // workShopProvider.listWorkshops.removeWhere((element) =>
-                        //     DateFormat("MMMM").format(dateFormat
-                        //         .parse(element.datetime.toString())) ==
-                        //     'July');
-                        setState(() {
-                          isJuly = false;
-                          isAugust = true;
-                        });
-                      },
+                      onTap: null,
                       child: Container(
                         height: 36,
                         width: ResponsiveValue(
@@ -332,7 +312,9 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                "images/deafult_event_background.jpeg",
+                workShopModel.id == 16
+                    ? "images/bk_ws.jpg"
+                    : "images/deafult_event_background.jpeg",
                 height: 210,
                 width: 210,
                 fit: BoxFit.cover,
@@ -443,7 +425,9 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Image.asset(
-                  "images/deafult_event_background.jpeg",
+                  workShopModel.id == 16
+                      ? "images/bk_ws.jpg"
+                      : "images/deafult_event_background.jpeg",
                   height: 120,
                   width: 120,
                   fit: BoxFit.cover,
