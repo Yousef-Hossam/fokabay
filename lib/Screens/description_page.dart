@@ -101,9 +101,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(  workShopModel.id == 16
-                  ? "images/bk_ws.jpg"
-                  : "images/deafult_event_background.jpeg",
+              Image.asset(  "images/deafult_event_background.jpeg",
                   height: 190, width: wd * 0.8, fit: BoxFit.cover),
               SizedBox(height: 20),
               Padding(
@@ -304,9 +302,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Image.asset(
-                  workShopModel.id == 16
-                      ? "images/bk_ws.jpg"
-                      : "images/deafult_event_background.jpeg",
+                  "images/deafult_event_background.jpeg",
                   height: 160,
                   width: wd * 0.9,
                   fit: BoxFit.cover,
@@ -355,7 +351,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           SizedBox(height: 4),
                           Text(
                               DateFormat("dd").format(dateFormat.parse(
-                                      workShopModel.datetime.toString())) +
+                                  workShopModel.datetime.toString())) +
                                   ' ' +
                                   DateFormat("MMMM").format(dateFormat.parse(
                                       workShopModel.datetime.toString())) +

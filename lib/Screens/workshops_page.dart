@@ -312,9 +312,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                workShopModel.id == 16
-                    ? "images/bk_ws.jpg"
-                    : "images/deafult_event_background.jpeg",
+                "images/deafult_event_background.jpeg",
                 height: 210,
                 width: 210,
                 fit: BoxFit.cover,
@@ -425,9 +423,7 @@ class _WorkShopsState extends State<WorkShops> with AfterLayoutMixin {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Image.asset(
-                  workShopModel.id == 16
-                      ? "images/bk_ws.jpg"
-                      : "images/deafult_event_background.jpeg",
+                  "images/deafult_event_background.jpeg",
                   height: 120,
                   width: 120,
                   fit: BoxFit.cover,

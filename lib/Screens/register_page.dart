@@ -1,9 +1,11 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:fokabay/Models/events_model.dart';
 import 'package:fokabay/Models/register_workshop.dart';
 import 'package:fokabay/Screens/landing_page.dart';
 import 'package:fokabay/provider/workshop_provider.dart';
 import 'package:fokabay/valditor.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -20,12 +22,25 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
   late WorkShopProvider workShopProvider;
   final _formKey = GlobalKey<FormState>();
   int? dropdownValue;
+  Batch? dropdownBatch;
   TextEditingController uname = new TextEditingController();
   TextEditingController uphone = new TextEditingController();
   TextEditingController umail = new TextEditingController();
   TextEditingController uunit = new TextEditingController();
+  TextEditingController uattename = new TextEditingController();
   Customer customer = new Customer();
   bool isLoading = false;
+  DateFormat dateFormat = new DateFormat('dd-MM-yyyy hh:mm a');
+  @override
+  List<DropdownMenuItem<Batch>> buildDropDownMenuItems(List<Batch>? batch) {
+    return batch!
+        .map((e) => DropdownMenuItem<Batch>(
+              child: Text(' ${ DateFormat.jm().format(dateFormat
+                  .parse(e.datetime.toString()))} '),
+              value: e,
+            ))
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,41 +210,95 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                   SizedBox(
                     height: 5,
                   ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    //     width: wd * 0.22,
+                    //   color: Colors.black12,
+                    child: TextFormField(
+                      controller: uunit,
+                      //    autocorrect: true,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xffE8E8E8),
+                        border: OutlineInputBorder(),
+                        hintText: 'Unit number',
+                        hintStyle: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xffAEAEAE),
+                            fontWeight: FontWeight.bold),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'please enter vaild unit number';
+                        } else
+                          return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   ResponsiveRowColumn(
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
-                        ? ResponsiveRowColumnType.COLUMN
+                        ? ResponsiveRowColumnType.ROW
                         : ResponsiveRowColumnType.ROW,
                     children: [
-                      ResponsiveRowColumnItem(
-                        rowFlex: 1,
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          //     width: wd * 0.22,
-                          //   color: Colors.black12,
-                          child: TextFormField(
-                            controller: uunit,
-                            //    autocorrect: true,
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xffE8E8E8),
-                              border: OutlineInputBorder(),
-                              hintText: 'Unit number',
-                              hintStyle: TextStyle(
-                                  fontSize: 16,
-                                  color: Color(0xffAEAEAE),
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'please enter vaild unit number';
-                              } else
-                                return null;
-                            },
-                          ),
-                        ),
-                      ),
+                      workShopProvider.events.batches != null &&
+                              workShopProvider.events.batches!.length > 0
+                          ? ResponsiveRowColumnItem(
+                              rowFlex: 1,
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 4.0),
+                                  child: FormField<Batch>(
+                                    builder: (FormFieldState<Batch> state) {
+                                      return InputDecorator(
+                                        decoration: InputDecoration(
+                                            filled: true,
+                                            fillColor: Color(0xffE8E8E8),
+                                            contentPadding:
+                                                EdgeInsets.fromLTRB(4, 4, 4, 4),
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        1.0))),
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton<Batch>(
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xffAEAEAE),
+                                              //   fontFamily: "verdana_regular",
+                                            ),
+                                            hint: Text(
+                                              "  select batch",
+                                              style: TextStyle(
+                                                color: Color(0xffAEAEAE),
+                                                fontSize: 16,
+                                                //  fontFamily: "verdana_regular",
+                                              ),
+                                            ),
+                                            items: buildDropDownMenuItems(
+                                                workShopProvider
+                                                    .events.batches),
+                                            isExpanded: true,
+                                            isDense: true,
+                                            onChanged: (value) {
+                                              dropdownBatch = value;
+                                              setState(() {});
+                                            },
+                                            value: dropdownBatch,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            )
+                          : ResponsiveRowColumnItem(child: SizedBox()),
                       ResponsiveRowColumnItem(
                         rowFlex: 1,
                         child: Container(
@@ -290,6 +359,35 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                     ],
                   ),
                   SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    //     width: wd * 0.22,
+                    //   color: Colors.black12,
+                    child: TextFormField(
+                      controller: uattename,
+                      //    autocorrect: true,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xffE8E8E8),
+                        border: OutlineInputBorder(),
+                        hintText: 'Name of attendess : ex ali,leila,nour',
+                        hintStyle: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xffAEAEAE),
+                            fontWeight: FontWeight.bold),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty || value.length < 2) {
+                          return 'please enter vaild names';
+                        } else
+                          return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(
                     height: ResponsiveValue(
                       context,
                       defaultValue: 10.0,
@@ -335,22 +433,33 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                                       if (_formKey.currentState!.validate()) {
                                         FocusScope.of(context).unfocus();
                                         await workShopProvider
-                                            .userWorkshopRegister(
-                                                RegisterWorkshop(
-                                                    customer: Customer(
-                                                        email:
-                                                            umail.text.trim(),
-                                                        noOfAttendancies:
-                                                            dropdownValue,
-                                                        lastName: '',
-                                                        firstName:
-                                                            uname.text.trim(),
-                                                        mobileNumber: int.parse(
-                                                            uphone.text.trim()),
-                                                        unitNumber:
-                                                            uunit.text.trim()),
-                                                    eventId: workShopProvider
-                                                        .events.id))
+                                            .userWorkshopRegister(RegisterWorkshop(
+                                                customer: Customer(
+                                                    email: umail.text.trim(),
+                                                    noOfAttendancies:
+                                                        dropdownValue,
+                                                    lastName: '',
+                                                    firstName:
+                                                        uname.text.trim(),
+                                                    mobileNumber: int.parse(
+                                                        uphone.text.trim()),
+                                                    unitNumber:
+                                                        uunit.text.trim(),
+                                                    attendeesNames:
+                                                        uattename.text.trim()),
+                                                eventId:
+                                                    workShopProvider.events.id,
+                                                eventBatchId: workShopProvider
+                                                                .events
+                                                                .batches !=
+                                                            null &&
+                                                        workShopProvider
+                                                                .events
+                                                                .batches!
+                                                                .length >
+                                                            0
+                                                    ? dropdownBatch!.ids
+                                                    : 0))
                                             .then((value) {
                                           // Navigator.pop(context);
                                           if (value != null) {
