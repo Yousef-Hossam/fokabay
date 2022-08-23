@@ -31,12 +31,13 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
   Customer customer = new Customer();
   bool isLoading = false;
   DateFormat dateFormat = new DateFormat('dd-MM-yyyy hh:mm a');
+
   @override
   List<DropdownMenuItem<Batch>> buildDropDownMenuItems(List<Batch>? batch) {
     return batch!
         .map((e) => DropdownMenuItem<Batch>(
-              child: Text(' ${ DateFormat.jm().format(dateFormat
-                  .parse(e.datetime.toString()))} '),
+              child: Text(
+                  ' ${DateFormat.jm().format(dateFormat.parse(e.datetime.toString()))} '),
               value: e,
             ))
         .toList();
@@ -449,17 +450,13 @@ class _RegisterPageState extends State<RegisterPage> with AfterLayoutMixin {
                                                         uattename.text.trim()),
                                                 eventId:
                                                     workShopProvider.events.id,
-                                                eventBatchId: workShopProvider
-                                                                .events
-                                                                .batches !=
-                                                            null &&
-                                                        workShopProvider
-                                                                .events
-                                                                .batches!
-                                                                .length >
-                                                            0
-                                                    ? dropdownBatch!.ids
-                                                    : 0))
+                                                eventBatchId:
+                                                    dropdownBatch!.ids! > 0
+                                                        ? dropdownBatch!.ids
+                                                        : workShopProvider
+                                                            .events
+                                                            .batches![0]
+                                                            .ids))
                                             .then((value) {
                                           // Navigator.pop(context);
                                           if (value != null) {

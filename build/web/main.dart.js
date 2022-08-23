@@ -62467,7 +62467,9 @@ l=A.dK(B.b.e1(g.y.a.a),null)
 k=B.b.e1(g.Q.a.a)
 j=B.b.e1(g.ch.a.a)
 i=A.a(A.a(g.d,"workShopProvider").c,"events").a
-h=A.a(A.a(g.d,"workShopProvider").c,"events").cx!=null&&A.a(A.a(g.d,"workShopProvider").c,"events").cx.length>0?g.r.a:0
+h=g.r.a
+h.toString
+if(!(h>0))h=A.a(A.a(g.d,"workShopProvider").c,"events").cx[0].a
 s=5
 return A.ao(p.uR(new A.Za(new A.CJ(m,"",l,k,o,n,j),i,h)).bl(0,new A.a7Z(g),t.P).eO(new A.a8_(g)),$async$$0)
 case 5:s=3
